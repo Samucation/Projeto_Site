@@ -1,5 +1,7 @@
 package br.com.siteTeste;
 
+import java.util.ArrayList;
+
 import br.com.siteTeste.persistencia.jdbc.UsuarioDAO;
 import br.com.siteTeste.persistrencia.entidade.Usuario;
 
@@ -7,7 +9,9 @@ public class TesteUsuarioDAO {
 
 	public static void main(String[] args){
 		
-		testBuscarPorId();
+		  testeAutenticarUsuarioSenha();
+		//testBuscarTodos();
+		//testBuscarPorId();
 		//testSalvar();
 		//testExcluir();
 		//testAlterar();
@@ -16,12 +20,55 @@ public class TesteUsuarioDAO {
 	}
 	
 	
+	
+	
+	/*
+	 * @verifica se o usuario e senha existe.
+	 */
+	private static void testeAutenticarUsuarioSenha() {
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		
+		Usuario usuarioDaConsulta = new Usuario();
+		usuarioDaConsulta.setLogin("wesker");
+		usuarioDaConsulta.setSenha("wesker123");
+		
+		Usuario usuRetorno = usuarioDAO.autenticarUsuarioSenha(usuarioDaConsulta);
+		
+		System.out.println(usuRetorno);
+	}
+
+
+
+
+
+	/*
+	 * @Busca todos os usuarios cadastrados na tabela Usuarios 
+	 */
+	private static void testBuscarTodos() {
+		UsuarioDAO usuarioDAO = new UsuarioDAO();		
+		ArrayList<Usuario> listaDeCadastrosDeUsuario = usuarioDAO.buscarTodosRegistroTbUsuario();
+	
+		for (Usuario cadastros : listaDeCadastrosDeUsuario){
+			System.out.println(cadastros);//Imprime o resultado dos cadastros que estavam no banco.
+		}
+		
+	}
+
+	
+	
+	
+	
+	/*
+	 * @Busca usuarios por id, ou seja apresenta os valores das colunas
+	 * baseado no id informado em buscadorPorId(?)
+	 * 
+	 */
 	private static void testBuscarPorId() {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		
-		Usuario usuario = usuarioDAO.buscadorPorId(2);
+		Usuario usuario = usuarioDAO.buscadorPorId(1);
 	
-		System.out.println();
+		System.out.println(usuario);
 	}
 
 
