@@ -2,6 +2,10 @@ package br.com.siteTeste.persistrencia.entidade;
 
 public class Usuario {
 
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", login=" + login + ", senha=" + senha + "]";
+	}
 	private Integer id;
 	private String nome;
 	private String login;
